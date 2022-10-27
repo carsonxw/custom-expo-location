@@ -34,27 +34,36 @@ static SEL whenInUseAuthorizationSelector;
 
 - (NSDictionary *)parsePermissions:(CLAuthorizationStatus)systemStatus
 {
-  EXPermissionStatus status;
-
-  switch (systemStatus) {
-    case kCLAuthorizationStatusAuthorizedWhenInUse:
-    case kCLAuthorizationStatusAuthorizedAlways: {
-      status = EXPermissionStatusGranted;
-      break;
+    EXPermissionStatus status;
+    NSString *scope = @"none";
+    
+    switch (systemStatus) {
+        case kCLAuthorizationStatusAuthorizedWhenInUse: {
+            status = EXPermissionStatusGranted;
+            scope = @"whenInUse";
+            break;
+        }
+        case kCLAuthorizationStatusAuthorizedAlways: {
+            status = EXPermissionStatusGranted;
+            scope = @"always";
+            break;
+        }
+        case kCLAuthorizationStatusDenied:
+        case kCLAuthorizationStatusRestricted: {
+            status = EXPermissionStatusDenied;
+            break;
+        }
+        case kCLAuthorizationStatusNotDetermined:
+        default: {
+            status = EXPermissionStatusUndetermined;
+            break;
+        }
     }
-    case kCLAuthorizationStatusDenied:
-    case kCLAuthorizationStatusRestricted: {
-      status = EXPermissionStatusDenied;
-      break;
-    }
-    case kCLAuthorizationStatusNotDetermined:
-    default: {
-      status = EXPermissionStatusUndetermined;
-      break;
-    }
-  }
-  
-  return @{ @"status": @(status) };
+    
+    return @{
+        @"status": @(status),
+        @"scope": scope
+    };
 }
 
 @end
