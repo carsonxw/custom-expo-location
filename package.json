@@ -31,10 +31,10 @@
     "preset": "expo-module-scripts"
   },
   "devDependencies": {
-    "expo-module-scripts": "^3.0.0",
-    "expo-modules-core": "^0.11.8"
+    "expo-module-scripts": "^3.0.0"
   },
   "dependencies": {
+    "expo-modules-core": "^0.11.8",
     "@expo/config-plugins": "^4.0.14"
   },
   "peerDependencies": {
