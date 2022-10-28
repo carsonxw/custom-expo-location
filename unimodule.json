@@ -1,4 +1,4 @@
 {
-  "name": "expo-location",
+  "name": "custom-expo-location",
   "platforms": ["ios", "android"]
 }

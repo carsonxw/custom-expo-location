@@ -43,12 +43,12 @@ static SEL whenInUseAuthorizationSelector;
   switch (systemStatus) {
     case kCLAuthorizationStatusAuthorizedWhenInUse: {
       status = EXPermissionStatusGranted;
-      scope = @"whenInUse";
+      scope = @"whenInUse!";
       break;
     }
     case kCLAuthorizationStatusAuthorizedAlways: {
       status = EXPermissionStatusGranted;
-      scope = @"always";
+      scope = @"always!";
       break;
     }
     case kCLAuthorizationStatusDenied:
